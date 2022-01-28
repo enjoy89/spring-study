@@ -1,6 +1,6 @@
 package hello.hellospring.domain;
 /**
- * 회원 객체 생성
+ * 회원 객체
  */
 public class Member {
 

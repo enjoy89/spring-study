@@ -9,10 +9,8 @@ import java.util.Optional;
  * 회원 repository interface
  */
 public interface MemberRepository {
-
     Member save(Member member);
     Optional<Member> findByID(Long id);
     Optional<Member> findByName(String name);
     List<Member> findAll();
-
 }
