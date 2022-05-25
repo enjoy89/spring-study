@@ -10,7 +10,7 @@ public class MemberServiceTest {
     @Test
     void join() {
         // given
-        Member member = new Member(1l, "memverA", Grade.VIP);
+        Member member = new Member(1L, "memverA", Grade.VIP);
 
         // when
         memberService.join(member);
@@ -18,6 +18,5 @@ public class MemberServiceTest {
 
         // then
         Assertions.assertThat(member).isEqualTo(findMember);
-
     }
 }
