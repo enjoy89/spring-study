@@ -1,6 +1,8 @@
 package hello.core.order;
 
+import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
@@ -13,12 +15,19 @@ public class AppConfig {
 
     // MemberServiceImpl의 생성자를 통해서 어떤 구현 객체를 주입할지는 오직 외부인 AppConfig에서 결정된다.
     public MemberService memberService() {
-        return new MemberServiceImpl(new MemoryMemberRepository()); // 생성자를 통해서 객체를 주입(연결) -> DI(Dependency Injection)
+        return new MemberServiceImpl(memberRepository()); // 생성자를 통해서 객체를 주입(연결) -> DI(Dependency Injection)
+    }
+
+    public MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
     }
 
     // 마찬가지로 OrderServiceImpl의 생성자를 통해서 어떤 구현 객체를 주입할지는 오직 외부인 AppConfig에서 결정된다.
     public OrderService orderService() {
-        return new OrderServiceImpl(new MemoryMemberRepository(),
-                new FixDiscountPolicy()); // 생성자를 통해서 객체를 주입(연결) -> DI(Dependency Injection)
+        return new OrderServiceImpl(memberRepository(), discountPolicy()); // 생성자를 통해서 객체를 주입(연결) -> DI(Dependency Injection)
+    }
+
+    public DiscountPolicy discountPolicy() {
+        return new FixDiscountPolicy();
     }
 }
