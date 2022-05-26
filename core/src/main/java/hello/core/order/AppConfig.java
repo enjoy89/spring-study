@@ -2,6 +2,7 @@ package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
@@ -29,5 +30,6 @@ public class AppConfig {
 
     public DiscountPolicy discountPolicy() {
         return new FixDiscountPolicy();
+//        return new RateDiscountPolicy();  // 할인 정책 변경 시 이 코드만 수정하면 바로 적용 가능
     }
 }
