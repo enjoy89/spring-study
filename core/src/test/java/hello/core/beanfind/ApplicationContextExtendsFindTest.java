@@ -57,6 +57,7 @@ public class ApplicationContextExtendsFindTest {
     @Test
     @DisplayName("부모 타입으로 모두 조회 -> Object")
     void findAllBeanObjectType() {
+        // 모든 자바 객체의 최고 부모임 Object 타입으로 조회하면, 모든 스프링 빈을 조회할 수 있다.
         Map<String, Object> beansOfType = ac.getBeansOfType(Object.class);
         for (String key : beansOfType.keySet()) {
             System.out.println("key = " + key + "value = " + beansOfType.get(key));
