@@ -5,6 +5,8 @@ import hello.core.order.AppConfig;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -49,5 +51,22 @@ public class SingletonTest {
         System.out.println("singletonService1 = " + singletonService1);
         System.out.println("singletonService2 = " + singletonService2);
         assertThat(singletonService1).isSameAs(singletonService2);
+    }
+
+    @Test
+    @DisplayName("스프링 컨테이너와 싱글톤")
+    void springContainer() {
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        MemberService memberService1 = ac.getBean("memberService", MemberService.class);
+        MemberService memberService2 = ac.getBean("memberService", MemberService.class);
+
+        // 스프링 컨테이너는 싱글톤 컨테이너 역할을 한다.
+        // 이처럼 싱글톤 객체를 생성하고 관리하는 기능을 싱글톤 레지스트리라 한다.
+        // 스프링 컨테이너의 이러한 기능 덕분에 싱글톤 패턴의 모든 단점(코드의 유연성이 떨어짐)을 해결하면서 객체를 싱글톤으로 유지할 수 있다.
+        System.out.println("memberService1 = " + memberService1);
+        System.out.println("memberService2 = " + memberService2);
+        assertThat(memberService1).isSameAs(memberService2);
+
     }
 }
