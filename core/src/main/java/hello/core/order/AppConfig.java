@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration  // 애플리케이션의 설정정보를 담당
 public class AppConfig {
-    // MemberServiceImpl의 생성자를 통해서 어떤 구현 객체를 주입할지는 오직 외부인 AppConfig에서 결정된다.
+    // MemberServiceImpl의 생성자를 통해서 어떤 구현 객체를 주입할지는 오직 외부인 AppConfig에서 결정된다
     @Bean
     public MemberService memberService() {
         return new MemberServiceImpl(memberRepository()); // 생성자를 통해서 객체를 주입(연결) -> DI(Dependency Injection)
