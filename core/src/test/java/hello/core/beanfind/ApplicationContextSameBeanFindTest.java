@@ -2,7 +2,6 @@ package hello.core.beanfind;
 
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
@@ -22,10 +21,8 @@ public class ApplicationContextSameBeanFindTest {
     @Test
     @DisplayName("타입으로 조회시 같은 타입이 둘 이상 있으면, 중복 오류가 발생한다")
     void findBeanByTypeDuplicate() {
-//        MemberRepository bean = ac.getBean(MemberRepository.class);
         assertThrows(NoUniqueBeanDefinitionException.class,
                 () -> ac.getBean(MemberRepository.class));
-
     }
 
     @Test
@@ -48,7 +45,6 @@ public class ApplicationContextSameBeanFindTest {
 
     @Configuration
     static class SameBeanConfig {
-
         @Bean
         public MemberRepository memberRepository1() {
             return new MemoryMemberRepository();

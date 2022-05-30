@@ -18,6 +18,7 @@ public class ApplicationContextBasicFindTest {
     @Test
     @DisplayName("빈 이름으로 조회")
     void findBeanByName() {
+        // 스프링 컨테이너에서 스프링 빈을 조회하는 가장 기본적인 방법
         MemberService memberService = ac.getBean("memberService", MemberService.class);
         Assertions.assertThat(memberService).isInstanceOf(MemberServiceImpl.class);
     }
@@ -43,5 +44,4 @@ public class ApplicationContextBasicFindTest {
         assertThrows(NoSuchBeanDefinitionException.class,
                 () -> ac.getBean("x", MemberService.class));
     }
-
 }
