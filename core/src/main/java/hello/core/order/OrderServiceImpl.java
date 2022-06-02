@@ -6,10 +6,13 @@ import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * 주문 서비스 구현체
  */
+@Component
 public class OrderServiceImpl implements OrderService {
 
     // 인터페이스에만 의존하며 DIP를 지키고 있음
@@ -26,6 +29,7 @@ public class OrderServiceImpl implements OrderService {
      * 주문 서비스 구현체는 인터페이스인 DiscountPolicy(추상화)만 의존하면 된다.
      */
 
+    @Autowired // 여러 의존관존도 한번에 주입받을 수 있다.
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;

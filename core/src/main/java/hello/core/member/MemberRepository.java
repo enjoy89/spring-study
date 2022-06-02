@@ -1,5 +1,7 @@
 package hello.core.member;
 
+import org.springframework.stereotype.Component;
+
 /**
  * 회원 저장소 인터페이스
  */
