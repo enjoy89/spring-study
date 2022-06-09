@@ -1,5 +1,6 @@
 package jpabook.jpashop;
 
+import jpabook.jpashop.domain.Member;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.*;
 
-@RunWith(SpringRunner.class)    // 스프링 관련된 테스트를 할 것임을 명
+@RunWith(SpringRunner.class)    // 스프링 관련된 테스트를 할 것임을 명시
 @SpringBootTest
 public class MemberRepositoryTest {
     @Autowired MemberRepository memberRepository;
@@ -22,7 +23,7 @@ public class MemberRepositoryTest {
     public void testMember() {
         // given
         Member member = new Member();
-        member.setUsername("memberA");
+//        member.setUsername("memberA");
 
         // when
         Long saveId = memberRepository.save(member);
@@ -30,7 +31,7 @@ public class MemberRepositoryTest {
 
         // then
         Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
-        Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
+//        Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
         Assertions.assertThat(findMember).isEqualTo(member);    // 동일성 보장
     }
 
