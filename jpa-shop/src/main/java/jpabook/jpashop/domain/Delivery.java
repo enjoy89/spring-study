@@ -15,7 +15,7 @@ public class Delivery {
     @Column(name = "delivery_id")
     private Long id;
 
-    @OneToOne(mappedBy = "delivery")   // 하나의 주문에는 하나의 배송이 존재
+    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)   // 하나의 주문에는 하나의 배송이 존재
     private Order order;
 
     @Embedded
@@ -23,4 +23,5 @@ public class Delivery {
 
     @Enumerated(EnumType.STRING)
     private DeliveryStatus deliveryStatus;  // 배송 상태 (READY, COMP)
+
 }
