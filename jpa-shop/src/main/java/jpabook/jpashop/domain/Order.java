@@ -51,4 +51,52 @@ public class Order {
         delivery.setOrder(this);
     }
 
+    /**
+     * 주문 엔티티 생성
+     * 주문 회원, 배송정보, 주문상품의 정보를 받아서 실제 주문 엔티티를 생성한다.
+     *
+     * @param member
+     * @param delivery
+     * @param orderItems
+     * @return
+     */
+    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
+        Order order = new Order();
+        order.setMember(member);
+        order.setDelivery(delivery);
+        for (OrderItem orderItem : orderItems) {
+            order.addOrderItem(orderItem);
+        }
+        order.setStatus(OrderStatus.ORDER);
+        order.setOrderDate(LocalDateTime.now());
+        return order;
+    }
+
+    // 비즈니즈 로직
+    /**
+     * 주문 취소
+     * 주문 상태를 취소로 변경하고, 주문상품에 주문 취소를 알림
+     * 만약 이미 배송을 완료한 상품이면 주문을 취소하지 못하도록 예외를 발생시킨
+     */
+    public void cancel() {
+        if (delivery.getDeliveryStatus() == DeliveryStatus.COMP) {
+            throw new IllegalStateException("이미 배송완료된 상품은 취소가 불가능합니다.");
+        }
+        this.setStatus(OrderStatus.CANCEL);
+        for (OrderItem orderItem : orderItems) {
+            orderItem.cancle();
+        }
+    }
+
+    /**
+     * 전체 주문 가격 조회
+     *
+     */
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (OrderItem orderItem : orderItems) {
+            totalPrice += orderItem.getTotalPrice();
+        }
+        return totalPrice;
+    }
 }
