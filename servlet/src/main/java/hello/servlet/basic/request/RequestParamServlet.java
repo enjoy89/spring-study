@@ -9,8 +9,12 @@ import java.io.IOException;
 import java.util.Enumeration;
 
 /**
+ * 클라이언트에서 서버로 데이터 전송 - GET 쿼리 파라미터
  * 1. 파라미터 전송 기능
  * http://localhost:8080/request-param?username=hello&age=20
+ *
+ * 2. 동일한 파라미터 전송 기능
+ * http://localhost:8080/request-param?username=hello&age=20&username=hello2
  */
 @WebServlet(name="requestParamServlet", urlPatterns = "/request-param")
 public class RequestParamServlet extends HttpServlet {
