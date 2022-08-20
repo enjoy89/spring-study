@@ -10,7 +10,8 @@ import java.io.IOException;
 
 /**
  * 서블릿을 컨트롤러로 사용하고, JSP를 뷰로 사용해서 MVC 패턴 적용
- * 모델은 내부의 저장소를 가지고 있는 HttpServletRequest 객체를 사용
+ * 모델은 내부의 저장소를 가지고 있는 HttpServletRequest 객체를 사용한다.
+ *
  */
 @WebServlet(name="mvcMemberFormServlet", urlPatterns = "/servlet-mvc/members/new-form")
 public class MvcMemberFormServlet extends HttpServlet {
