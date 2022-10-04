@@ -13,6 +13,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * FrontController 패턴 특징
+ * 1. 프론트 컨트롤러 서블릿 하나로 클라이언트의 요청을 받음
+ * 2. 프론트 컨트롤러가 요청에 맞는 컨트롤러를 찾아서 호출
+ * 3. 프론트 컨트롤러를 제외한 나머지 컨트롤러는 서블릿을 사용하지 않아도 됨
+ * 4. 모든 입구는 하나로 정리 -> 공통 처리 가능
+ */
 @WebServlet(name = "frontControllerServletV1", urlPatterns = "/front-controller/v1/*")    // 하위 모든 요청은 이 서블릿에서 받아들임
 public class FrontControllerServletV1 extends HttpServlet {
 

@@ -33,16 +33,13 @@ public class FrontControllerServletV2 extends HttpServlet {
 
         String requestURI = request.getRequestURI();
 
-        // requestURI를 조회해서 실제 호출할 컨트롤러를 먼저 찾는다
-        // 해당 컨트롤러가 없으면 404 상태 코드를 반환하고,
-        // 해당 컨트롤러가 있으면 해당 컨트롤러를 실행한다.
         ControllerV2 controller = controllerV2Map.get(requestURI);
         if (controller == null) {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
         } else {
-            MyView view = controller.process(request, response);
-            view.render(request, response);
+            MyView view = controller.process(request, response);    // 각각의 컨트롤러는 뷰를 반환
+            view.render(request, response); // 반환된 뷰로 forward 로직을 수행하면 JSP가 호출됨
         }
     }
 }
