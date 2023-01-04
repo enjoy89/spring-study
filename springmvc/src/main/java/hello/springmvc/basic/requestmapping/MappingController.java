@@ -5,19 +5,48 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+// @Controller -> 반환 값이 String이면 뷰 이름으로 인식된다. 그래서 뷰를 찾고 뷰가 랜더링된다.
+// @RestController -> 반환 값을 Http 메시지 바디에 바로 입력한다.
+
 @RestController
 public class MappingController {
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    private Logger log = LoggerFactory .getLogger(getClass());
 
+    /**
+     * 기본 요청
+     * 둘 다 허용 -> "/hello-basic", "/hello-basic/"
+     * HTTP 메서드 모두 허용 -> GET, HEAD, POST, PUT, PATCH, DELETE
+     *
+     * @return
+     */
+    @RequestMapping("/hello-basic")
+    public String helloBasic() {
+        log.info("helloBasic");
+        return "ok";
+
+    }
+
+    /**
+     * method 특정 HTTP 메서드 요청만 허용
+     * GET, HEAD, POST, PUT, PATCH, DELETE
+     */
     @RequestMapping(value = "/mapping-get-v1", method = RequestMethod.GET)
-    public String mappingGetV2() {
+    public String mappingGetV1() {
         log.info("mappingGetV1");
         return "ok";
     }
 
+    /**
+     * 편리한 축약 애노테이션 (코드보기)
+     * @GetMapping
+     * @PostMapping
+     * @PutMapping
+     * @DeleteMapping
+     * @PatchMapping
+     */
     @GetMapping("/mapping-get-v2")
-    public String mappingGetV1() {
+    public String mappingGetV2() {
         log.info("mappingGetV2");
         return "ok";
     }
@@ -26,8 +55,6 @@ public class MappingController {
      * PathVariable(경로변수) 사용
      * 변수명이 같으면 생략 가능
      * @PathVariable("userId") String userId -> @PathVariable userId
-     * @param data
-     * @return
      */
     @GetMapping("/mapping/{userId}")
     public String mappingPath(@PathVariable("userId") String data) {
@@ -37,9 +64,6 @@ public class MappingController {
 
     /**
      * PathVariable 사용 다중
-     * @param userId
-     * @param orderId
-     * @return
      */
     @GetMapping("/mapping/users/{userId}/orders/{orderId}")
     public String mappingPath(@PathVariable String userId, @PathVariable Long orderId) {
@@ -70,7 +94,7 @@ public class MappingController {
      * headers="mode=debug"
      * headers="mode!=debug" (! = )
      */
-    @GetMapping(value="/mapping-header", headers = "mode=debug")
+    @GetMapping(value = "/mapping-header", headers = "mode=debug")
     public String mappingHeader() {
         log.info("mappingHeader");
         return "ok";
@@ -85,7 +109,7 @@ public class MappingController {
      * consumes="*\/*"
      * MediaType.APPLICATION_JSON_VALUE
      */
-    @PostMapping(value="/mapping-consume", consumes= MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/mapping-consume", consumes = MediaType.APPLICATION_JSON_VALUE)
     public String mappingConsumes() {
         log.info("mappingConsumes");
         return "ok";
