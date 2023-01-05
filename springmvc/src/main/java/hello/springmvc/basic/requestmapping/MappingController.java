@@ -17,14 +17,11 @@ public class MappingController {
      * 기본 요청
      * 둘 다 허용 -> "/hello-basic", "/hello-basic/"
      * HTTP 메서드 모두 허용 -> GET, HEAD, POST, PUT, PATCH, DELETE
-     *
-     * @return
      */
     @RequestMapping("/hello-basic")
     public String helloBasic() {
         log.info("helloBasic");
         return "ok";
-
     }
 
     /**
@@ -38,7 +35,7 @@ public class MappingController {
     }
 
     /**
-     * 편리한 축약 애노테이션 (코드보기)
+     * 편리한 축약 애노테이션
      * @GetMapping
      * @PostMapping
      * @PutMapping
@@ -53,12 +50,20 @@ public class MappingController {
 
     /**
      * PathVariable(경로변수) 사용
-     * 변수명이 같으면 생략 가능
      * @PathVariable("userId") String userId -> @PathVariable userId
      */
-    @GetMapping("/mapping/{userId}")
+//    @GetMapping("/mapping/{userId}")
     public String mappingPath(@PathVariable("userId") String data) {
         log.info("mappingPath userId={}", data);
+        return "ok";
+    }
+
+    /**
+     * @PathVaruable의 이름과 파라미터의 이름이 같으면 생략 가능
+     */
+    @GetMapping("/mapping/{userId}")
+    public String mappingPath2(@PathVariable String userId) {
+        log.info("mappingPath userId={}", userId);
         return "ok";
     }
 

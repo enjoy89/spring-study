@@ -15,6 +15,7 @@ public class ResponseViewController {
         return mav;
     }
 
+    // String을 반환하는 경우 -> view or http message
     @RequestMapping("/response-view-v2")
     public String responseViewV2(Model model) {
         model.addAttribute("data", "hello!");

@@ -41,9 +41,7 @@ public class RequestParamController {
      */
     @ResponseBody   // View 조회를 무시하고, HTTP 메시지 바디에 직접 해당 내용 입력
     @RequestMapping("/request-param-v2")
-    public String requestParamV2(
-            @RequestParam("username") String memberName,
-            @RequestParam("age") int memberAge) {
+    public String requestParamV2(@RequestParam("username") String memberName, @RequestParam("age") int memberAge) {
         log.info("username={}, age={}", memberName, memberAge);
         return "ok";
     }
@@ -53,9 +51,7 @@ public class RequestParamController {
      */
     @ResponseBody
     @RequestMapping("/request-param-v3")
-    public String requestParamV3(
-            @RequestParam String username,
-            @RequestParam int age) {
+    public String requestParamV3(@RequestParam String username, @RequestParam int age) {
         log.info("username={}, age={}", username, age);
         return "ok";
     }
@@ -73,12 +69,14 @@ public class RequestParamController {
 
     /**
      * 파라미터 필수 여부를 체크
+     * required = true 가 기본값임
+     * username -> 필수로 입력해야함 / 빈문자도 통과한다.
+     * age는 기본값이 아님
      */
     @ResponseBody
     @RequestMapping("/request-param-required")
-    public String requestParamRequired(
-            @RequestParam(required = true) String username,
-            @RequestParam(required = false) Integer age) {
+    public String requestParamRequired(@RequestParam(required = true) String username,
+                                       @RequestParam(required = false) Integer age) {
         log.info("username={}, age={}", username, age);
         return "ok";
     }
@@ -105,17 +103,17 @@ public class RequestParamController {
         return "ok";
     }
 
-//    @ResponseBody
+    @ResponseBody
 //    @RequestMapping("/model-attribute-v1")
-//    public String modelAttributeV1(@RequestParam String username, @RequestParam int age) {
-//        HelloData helloData = new HelloData();
-//        helloData.setUsername(username);
-//        helloData.setAge(age);
-//
-//        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
-//        return "ok";
-//
-//    }
+    public String modelAttributeV1(@RequestParam String username, @RequestParam int age) {
+        HelloData helloData = new HelloData();
+        helloData.setUsername(username);
+        helloData.setAge(age);
+
+        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+        return "ok";
+
+    }
 
     @ResponseBody
     @RequestMapping("/model-attribute-v1")

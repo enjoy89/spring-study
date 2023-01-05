@@ -57,7 +57,7 @@ public class RequestBodyStringController  {
     @PostMapping("/request-body-string-v3")
     public HttpEntity<String> requestBodyStringV3(HttpEntity<String> httpEntity) {
         String messageBody = httpEntity.getBody();
-        log.info("meesageBody={}", messageBody);
+        log.info("messageBody={}", messageBody);
         return new HttpEntity<>("ok");
     }
 
