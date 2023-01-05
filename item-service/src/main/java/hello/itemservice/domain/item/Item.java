@@ -13,10 +13,7 @@ public class Item {
     private String itemName;    // 상품명
     private Integer price;      // 상품 가격 (가격과 수량이 Integer인 이유: null 값이 존재할 가능성이 있기 때문)
     private Integer quantity;   // 상품 수량
-<<<<<<< HEAD
     private String writer;
-=======
->>>>>>> 95d936f996c95c4afca81b1fa7f7df871d1433bf
 
     /**
      * 기본 생성자
@@ -26,17 +23,15 @@ public class Item {
     /**
      * 상품 id를 제외한 생성자
      */
-<<<<<<< HEAD
     public Item(String itemName, Integer price, Integer quantity, String writer) {
         this.itemName = itemName;
         this.price = price;
         this.quantity = quantity;
         this.writer = writer;
-=======
+    }
     public Item(String itemName, Integer price, Integer quantity) {
         this.itemName = itemName;
         this.price = price;
         this.quantity = quantity;
->>>>>>> 95d936f996c95c4afca81b1fa7f7df871d1433bf
     }
 }
