@@ -163,7 +163,12 @@ public class BasicItemController {
      */
     @PostConstruct
     public void init() {
+<<<<<<< HEAD
         itemRepository.save(new Item("ItemA", 10000, 10, "작성자A"));
         itemRepository.save(new Item("ItemB", 20000, 20, "작성자A"));
+=======
+        itemRepository.save(new Item("ItemA", 10000, 10));
+        itemRepository.save(new Item("ItemB", 20000, 20));
+>>>>>>> 95d936f996c95c4afca81b1fa7f7df871d1433bf
     }
 }
